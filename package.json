@@ -2,16 +2,29 @@
   "name": "neatlint",
   "version": "1.0.0",
   "description": "CLI tool to automatically set up ESLint and Prettier for a project.",
-  "author": "StablDev",
+  "author": "StablDev <thestabldev@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stabldev/neatlint.git"
+  },
+  "homepage": "https://github.com/stabldev/neatlint#readme",
+  "bugs": "https://github.com/stabldev/neatlint/issues",
   "type": "module",
   "main": "./dist/cli.js",
   "bin": {
     "neatlint": "./dist/cli.js"
   },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": "^20.19.0 || ^22.13.0 || >=24"
+  },
   "scripts": {
     "dev": "tsx src/cli.ts",
-    "build": "tsup src/cli.ts --format esm --clean"
+    "build": "tsup src/cli.ts --format esm --clean",
+    "prepack": "npm run build"
   },
   "keywords": [
     "eslint",
