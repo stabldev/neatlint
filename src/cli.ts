@@ -17,9 +17,8 @@ cli
     try {
       const cwd = process.cwd();
 
-      console.log(pc.cyan("Detecting package manager..."));
-      const pm = detectPackageManager(cwd);
-      console.log(pc.green(`Detected package manager: ${pm}`));
+      const pm = detectPackageManager();
+      console.log(pc.green(`Using package manager: ${pm}`));
 
       await runEslintInit(pm, cwd);
       await installPrettier(pm, cwd);
