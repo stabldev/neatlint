@@ -46,7 +46,7 @@ export default [
     return;
   }
 
-  const exportDefaultRegex = /export\s+default\s+\[/;
+  const exportDefaultRegex = /export\s+default\s+(?:[\w.]+\s*\()?\s*\[/;
   if (!exportDefaultRegex.test(content)) {
     console.log(pc.yellow(`Warning: Could not automatically patch ${path.basename(configPath)}.`));
     console.log(pc.yellow("Please add prettier manually:"));
@@ -65,13 +65,28 @@ export default [
   const before = content.slice(0, lastBracketIndex);
   const after = content.slice(lastBracketIndex);
 
-  const trimmedBefore = before.trim();
-  const needsComma = trimmedBefore.length > 0 && !trimmedBefore.endsWith(",") && !trimmedBefore.endsWith("[");
+  const trimmedBeforeRight = before.trimEnd();
+  const needsComma = trimmedBeforeRight.length > 0 && !trimmedBeforeRight.endsWith(",") && !trimmedBeforeRight.endsWith("[");
 
   const importStatement = `import eslintConfigPrettier from "eslint-config-prettier";\n`;
   const injection = (needsComma ? "," : "") + "\n  eslintConfigPrettier,\n";
 
-  const newContent = importStatement + before + injection + after;
+  let newContent = trimmedBeforeRight + injection + after;
+
+  const importRegex = /import\s+[\s\S]*?from\s+['"][^'"]+['"];?|import\s+['"][^'"]+['"];?/g;
+  let lastImportIndex = 0;
+  let match;
+  while ((match = importRegex.exec(newContent)) !== null) {
+    lastImportIndex = match.index + match[0].length;
+  }
+
+  if (lastImportIndex > 0) {
+    const beforeImport = newContent.slice(0, lastImportIndex);
+    const afterImport = newContent.slice(lastImportIndex).trimStart();
+    newContent = beforeImport + "\n" + importStatement + "\n" + afterImport;
+  } else {
+    newContent = importStatement + "\n" + newContent.trimStart();
+  }
 
   await fs.writeFile(configPath, newContent, "utf8");
   console.log(pc.green(`Patched ${path.basename(configPath)}.`));
