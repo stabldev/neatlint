@@ -75,7 +75,7 @@ a:hover {
 
 section {
   padding: var(--space-xl) 0;
-  /* border-bottom: 1px solid var(--border); */
+  border-bottom: 1px solid var(--border);
 }
 
 section:last-of-type {
@@ -92,7 +92,7 @@ section:last-of-type {
 
 .hero__name {
   font-family: var(--font-mono);
-  font-size: 3.25rem;
+  font-size: 3rem;
   font-weight: 700;
   letter-spacing: -0.03em;
   color: var(--text);
@@ -184,58 +184,7 @@ section:last-of-type {
   letter-spacing: -0.01em;
 }
 
-/* --- Steps (What It Does) --- */
 
-.steps {
-  list-style: none;
-  position: relative;
-  padding-left: var(--space-xl);
-}
-
-.steps::before {
-  content: "";
-  position: absolute;
-  left: 7px;
-  top: 8px;
-  bottom: 8px;
-  width: 1px;
-  background-color: var(--border);
-}
-
-.steps li {
-  position: relative;
-  margin-bottom: var(--space-lg);
-}
-
-.steps li:last-child {
-  margin-bottom: 0;
-}
-
-.steps li::before {
-  content: "";
-  position: absolute;
-  left: calc(-1 * var(--space-xl) + 3px);
-  top: 10px;
-  width: 9px;
-  height: 9px;
-  border-radius: 0;
-  background-color: var(--bg);
-  border: 2px solid var(--accent);
-}
-
-.step__title {
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text);
-  margin-bottom: var(--space-xs);
-}
-
-.step__desc {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-}
 
 /* --- Usage / Tabs --- */
 
