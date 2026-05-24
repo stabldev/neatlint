@@ -1,5 +1,5 @@
 {
-  "name": "neatlint",
+  "name": "@stabldev/neatlint",
   "version": "1.0.0",
   "description": "CLI tool to automatically set up ESLint and Prettier for a project.",
   "author": "StablDev <thestabldev@gmail.com>",
@@ -11,6 +11,7 @@
   "homepage": "https://github.com/stabldev/neatlint#readme",
   "bugs": "https://github.com/stabldev/neatlint/issues",
   "publishConfig": {
+    "access": "public",
     "provenance": true
   },
   "type": "module",
