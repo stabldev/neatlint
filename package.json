@@ -1,6 +1,6 @@
 {
   "name": "neatlint",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "CLI tool to automatically set up ESLint and Prettier for a project.",
   "author": "StablDev <thestabldev@gmail.com>",
   "license": "MIT",
