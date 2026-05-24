@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>neatlint — Automatically set up ESLint and Prettier</title>
+  <meta name="description"
+    content="A CLI tool that automatically sets up and configures ESLint and Prettier for modern JavaScript and TypeScript projects. One command. Zero configuration conflicts.">
+  <meta name="keywords" content="eslint, prettier, linter, formatter, javascript, typescript, cli, developer tools">
+  <meta name="author" content="StablDev">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="page">
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <h1 class="hero__name">neatlint</h1>
+      <p class="hero__tagline">Set up ESLint and Prettier for your JavaScript and TypeScript projects. One command, zero
+        config conflicts.</p>
+      <div class="hero__install">
+        <span class="hero__prompt">$</span>
+        <code id="install-command">npx neatlint init</code>
+        <button class="copy-btn" id="copy-btn" type="button" aria-label="Copy install command">copy</button>
+      </div>
+      <div class="hero__links">
+        <a href="https://www.npmjs.com/package/neatlint" target="_blank" rel="noopener noreferrer">npm</a>
+        <a href="https://github.com/stabldev/neatlint" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </section>
+
+    <!-- What It Does -->
+    <section id="what-it-does">
+      <h2 class="section-title">What it does</h2>
+      <ol class="steps">
+        <li>
+          <div class="step__title">Runs ESLint initialization</div>
+          <div class="step__desc">Invokes the interactive ESLint setup tool appropriate for your package manager to
+            create an ESLint configuration.</div>
+        </li>
+        <li>
+          <div class="step__title">Installs dependencies</div>
+          <div class="step__desc">Adds <code>prettier</code> and <code>eslint-config-prettier</code> as dev
+            dependencies.</div>
+        </li>
+        <li>
+          <div class="step__title">Generates .prettierrc</div>
+          <div class="step__desc">Creates a <code>.prettierrc</code> with sensible defaults.</div>
+        </li>
+        <li>
+          <div class="step__title">Patches ESLint flat config</div>
+          <div class="step__desc">Locates your ESLint config file and integrates <code>eslint-config-prettier</code> to
+            prevent formatting rule conflicts.</div>
+        </li>
+        <li>
+          <div class="step__title">Configures package.json scripts</div>
+          <div class="step__desc">Adds <code>lint</code>, <code>format</code>, and <code>format:check</code> scripts to
+            your <code>package.json</code>.</div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Usage -->
+    <section id="usage">
+      <h2 class="section-title">Usage</h2>
+      <div class="tabs" role="tablist">
+        <button class="tab-btn active" role="tab" aria-selected="true" data-tab="npx" id="tab-npx">npx</button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="pnpm" id="tab-pnpm">pnpm</button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="bun" id="tab-bun">bun</button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="yarn" id="tab-yarn">yarn</button>
+      </div>
+      <div class="tab-panel active" role="tabpanel" id="panel-npx" aria-labelledby="tab-npx">
+        <code id="cmd-npx">npx neatlint init</code>
+        <button class="copy-btn tab-copy-btn" type="button" data-target="cmd-npx"
+          aria-label="Copy command">copy</button>
+      </div>
+      <div class="tab-panel" role="tabpanel" id="panel-pnpm" aria-labelledby="tab-pnpm">
+        <code id="cmd-pnpm">pnpm dlx neatlint init</code>
+        <button class="copy-btn tab-copy-btn" type="button" data-target="cmd-pnpm"
+          aria-label="Copy command">copy</button>
+      </div>
+      <div class="tab-panel" role="tabpanel" id="panel-bun" aria-labelledby="tab-bun">
+        <code id="cmd-bun">bunx neatlint init</code>
+        <button class="copy-btn tab-copy-btn" type="button" data-target="cmd-bun"
+          aria-label="Copy command">copy</button>
+      </div>
+      <div class="tab-panel" role="tabpanel" id="panel-yarn" aria-labelledby="tab-yarn">
+        <code id="cmd-yarn">yarn dlx neatlint init</code>
+        <button class="copy-btn tab-copy-btn" type="button" data-target="cmd-yarn"
+          aria-label="Copy command">copy</button>
+      </div>
+    </section>
+
+    <!-- Default Configuration -->
+    <section id="config">
+      <h2 class="section-title">Default configuration</h2>
+      <div class="config-grid">
+        <div class="config-block">
+          <div class="config-block__header">.prettierrc</div>
+          <div class="config-block__body">
+            <pre><span class="syn-punct">{</span>
+  <span class="syn-key">"semi"</span><span class="syn-punct">:</span> <span class="syn-bool">true</span><span class="syn-punct">,</span>
+  <span class="syn-key">"singleQuote"</span><span class="syn-punct">:</span> <span class="syn-bool">false</span><span class="syn-punct">,</span>
+  <span class="syn-key">"trailingComma"</span><span class="syn-punct">:</span> <span class="syn-str">"es5"</span>
+<span class="syn-punct">}</span></pre>
+          </div>
+        </div>
+        <div class="config-block">
+          <div class="config-block__header">eslint.config.js (patched)</div>
+          <div class="config-block__body">
+            <pre><span class="syn-keyword">import</span> prettier <span class="syn-keyword">from</span> <span class="syn-str">"eslint-config-prettier"</span><span class="syn-punct">;</span>
+<span class="syn-comment">// ... your existing config</span>
+
+<span class="syn-keyword">export default</span> <span class="syn-punct">[</span>
+  <span class="syn-comment">// ...existing rules,</span>
+  prettier<span class="syn-punct">,</span>
+<span class="syn-punct">];</span></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="page footer">
+    <a href="https://github.com/stabldev/neatlint/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT
+      License</a>
+    <span class="footer__sep">·</span>
+    <a href="https://stabldev.github.io" target="_blank" rel="noopener noreferrer">StablDev</a>
+    <span class="footer__sep">·</span>
+    <a href="https://github.com/stabldev/neatlint" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <span class="footer__sep">·</span>
+    <a href="https://www.npmjs.com/package/neatlint" target="_blank" rel="noopener noreferrer">npm</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
