@@ -10,6 +10,9 @@
   },
   "homepage": "https://github.com/stabldev/neatlint#readme",
   "bugs": "https://github.com/stabldev/neatlint/issues",
+  "publishConfig": {
+    "provenance": true
+  },
   "type": "module",
   "main": "./dist/cli.js",
   "bin": {
