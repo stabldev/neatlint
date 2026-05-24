@@ -27,7 +27,7 @@
   "scripts": {
     "dev": "tsx src/cli.ts",
     "build": "tsup src/cli.ts --format esm --clean",
-    "prepack": "npm run build"
+    "prepack": "pnpm build"
   },
   "keywords": [
     "eslint",
