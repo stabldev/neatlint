@@ -6,15 +6,6 @@ A command-line interface (CLI) tool designed to automatically and seamlessly set
 
 Configuring linting and formatting tools for new or existing projects can be tedious and prone to configuration conflicts. `neatlint` automates the entire setup process. It detects your package manager, initializes ESLint, installs Prettier, writes default configurations, patches configuration files to avoid rule conflicts, and adds execution scripts to your `package.json`.
 
-## Features
-
-- **Package Manager Auto-Detection**: Supports and automatically detects npm, pnpm, yarn, and bun.
-- **Automated ESLint Setup**: Runs the official ESLint configuration tool (`@eslint/config`) tailored to your package manager.
-- **Prettier Integration**: Installs Prettier and `eslint-config-prettier` to disable formatting-related ESLint rules that might conflict with Prettier.
-- **Automatic Configuration Patching**: Detects and patches existing ESLint flat configuration files (e.g., `eslint.config.js`, `eslint.config.mjs`, `eslint.config.ts`, or `eslint.config.mts`) to apply the Prettier configuration.
-- **Predefined Scripts**: Adds npm scripts to `package.json` for immediate linting and formatting.
-- **Default Formatting Rules**: Generates a standard `.prettierrc` file.
-
 ## Requirements
 
 - Node.js version `^20.19.0`, `^22.13.0`, or `>=24`.
@@ -30,14 +21,12 @@ npx neatlint init
 Alternatively, if you are using specific package managers, you can use:
 
 ```bash
-# Using pnpm
-pnpm dlx neatlint init
-
-# Using yarn
-yarn dlx neatlint init
-
 # Using bun
 bunx neatlint init
+# Using pnpm
+pnpm dlx neatlint init
+# Using yarn
+yarn dlx neatlint init
 ```
 
 ## What neatlint Does
@@ -68,35 +57,6 @@ Appends the following scripts to your `package.json` (skipping any script name t
 - `"lint": "eslint ."` - Lints the workspace.
 - `"format": "prettier . --write"` - Formats all files.
 - `"format:check": "prettier . --check"` - Checks file formatting.
-
-## Local Development
-
-To clone, build, and run the project locally, follow these steps:
-
-### Prerequisites
-Make sure you have `pnpm` installed.
-
-### Steps
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/stabldev/neatlint.git
-   cd neatlint
-   ```
-
-2. Install dependencies:
-   ```bash
-   pnpm install
-   ```
-
-3. Run in development mode:
-   ```bash
-   pnpm dev init
-   ```
-
-4. Build the project:
-   ```bash
-   pnpm build
-   ```
 
 ## License
 
