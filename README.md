@@ -15,18 +15,18 @@ Configuring linting and formatting tools for new or existing projects can be ted
 To set up ESLint and Prettier in your project directory, run:
 
 ```bash
-npx @stabldev/neatlint init
+npx neatlint init
 ```
 
 Alternatively, if you are using specific package managers, you can use:
 
 ```bash
 # Using bun
-bunx @stabldev/neatlint init
+bunx neatlint init
 # Using pnpm
-pnpm dlx @stabldev/neatlint init
+pnpm dlx neatlint init
 # Using yarn
-yarn dlx @stabldev/neatlint init
+yarn dlx neatlint init
 ```
 
 ## What neatlint Does
